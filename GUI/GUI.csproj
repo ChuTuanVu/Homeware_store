@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{73D4FBE7-1CC3-49C7-BBE1-3BB06C3556B3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GUI</RootNamespace>
+    <AssemblyName>GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="gui_chinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui_chinh.Designer.cs">
+      <DependentUpon>gui_chinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui_dangnhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui_dangnhap.Designer.cs">
+      <DependentUpon>gui_dangnhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui_khongthedangnhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui_khongthedangnhap.Designer.cs">
+      <DependentUpon>gui_khongthedangnhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gui_thongtin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gui_thongtin.Designer.cs">
+      <DependentUpon>gui_thongtin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Report\hoadonnhap.cs">
+      <DependentUpon>hoadonnhap.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\hoadonxuat.cs">
+      <DependentUpon>hoadonxuat.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\hoadonnguoidung.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>hoadonnguoidung.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="uc_chinh\uc_bangdieukhien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_chinh\uc_bangdieukhien.Designer.cs">
+      <DependentUpon>uc_bangdieukhien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_chinh\uc_danhmuc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_chinh\uc_danhmuc.Designer.cs">
+      <DependentUpon>uc_danhmuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_chinh\uc_hoadonnguoidung.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_chinh\uc_hoadonnguoidung.Designer.cs">
+      <DependentUpon>uc_hoadonnguoidung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_chinh\uc_hoadonxuat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_chinh\uc_hoadonxuat.Designer.cs">
+      <DependentUpon>uc_hoadonxuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_chinh\uc_hoadonnhap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_chinh\uc_hoadonnhap.Designer.cs">
+      <DependentUpon>uc_hoadonnhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_chinh\uc_nhacungcap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_chinh\uc_nhacungcap.Designer.cs">
+      <DependentUpon>uc_nhacungcap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_chinh\uc_nhanvien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_chinh\uc_nhanvien.Designer.cs">
+      <DependentUpon>uc_nhanvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_chinh\uc_sanpham.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_chinh\uc_sanpham.Designer.cs">
+      <DependentUpon>uc_sanpham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_chinh\uc_taikhoan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_chinh\uc_taikhoan.Designer.cs">
+      <DependentUpon>uc_taikhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_khongthedangnhap\uc_dangky.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_khongthedangnhap\uc_dangky.Designer.cs">
+      <DependentUpon>uc_dangky.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_khongthedangnhap\uc_mk.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_khongthedangnhap\uc_mk.Designer.cs">
+      <DependentUpon>uc_mk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="uc_khongthedangnhap\uc_tennguoidung.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_khongthedangnhap\uc_tennguoidung.Designer.cs">
+      <DependentUpon>uc_tennguoidung.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="gui_chinh.resx">
+      <DependentUpon>gui_chinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui_dangnhap.resx">
+      <DependentUpon>gui_dangnhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui_khongthedangnhap.resx">
+      <DependentUpon>gui_khongthedangnhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gui_thongtin.resx">
+      <DependentUpon>gui_thongtin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\hoadonnhap.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>hoadonnhap.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\hoadonxuat.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>hoadonxuat.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\hoadonnguoidung.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>hoadonnguoidung.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_chinh\uc_bangdieukhien.resx">
+      <DependentUpon>uc_bangdieukhien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_chinh\uc_danhmuc.resx">
+      <DependentUpon>uc_danhmuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_chinh\uc_hoadonnguoidung.resx">
+      <DependentUpon>uc_hoadonnguoidung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_chinh\uc_hoadonxuat.resx">
+      <DependentUpon>uc_hoadonxuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_chinh\uc_hoadonnhap.resx">
+      <DependentUpon>uc_hoadonnhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_chinh\uc_nhacungcap.resx">
+      <DependentUpon>uc_nhacungcap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_chinh\uc_nhanvien.resx">
+      <DependentUpon>uc_nhanvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_chinh\uc_sanpham.resx">
+      <DependentUpon>uc_sanpham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_chinh\uc_taikhoan.resx">
+      <DependentUpon>uc_taikhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_khongthedangnhap\uc_dangky.resx">
+      <DependentUpon>uc_dangky.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_khongthedangnhap\uc_mk.resx">
+      <DependentUpon>uc_mk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_khongthedangnhap\uc_tennguoidung.resx">
+      <DependentUpon>uc_tennguoidung.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{11ab3f30-32f1-46f5-81c2-0eb8b94584d1}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{e076b640-658f-47db-8e69-8511ad771975}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UTLT\UTLT.csproj">
+      <Project>{855cf5cc-cd55-4386-86ee-dd0663e86963}</Project>
+      <Name>UTLT</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\thunho.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dangnhap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\matkhauan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\matkhau.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dangky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tennguoidung.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saochep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quaylai.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tieptuc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <None Include="Resources\mua.png" />
+    <None Include="Resources\giohang.png" />
+    <None Include="Resources\dangnhapnen.png" />
+    <None Include="Resources\userv1.png" />
+    <None Include="Resources\userv2.png" />
+    <None Include="Resources\dollar.png" />
+    <None Include="Resources\xehang.png" />
+    <None Include="Resources\gach.png" />
+    <None Include="Resources\dangkynengb.png" />
+    <None Include="Resources\tuihang.png" />
+    <None Include="Resources\nguoidung.jpg" />
+    <None Include="Resources\hoadon.png" />
+    <None Include="Resources\tructuyen.png" />
+    <None Include="Resources\ngoaituyen.png" />
+    <None Include="Resources\xoa.png" />
+    <None Include="Resources\sua.png" />
+    <None Include="Resources\them.png" />
+    <None Include="Resources\moi.png" />
+    <None Include="Resources\tim.png" />
+    <None Include="Resources\dangkyx.png" />
+    <None Include="Resources\dangkytich.png" />
+    <None Include="Resources\dangkymuiten.png" />
+    <None Include="Resources\dangkynen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

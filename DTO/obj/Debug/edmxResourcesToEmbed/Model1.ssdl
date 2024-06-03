@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="da1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cdhoadonnhap">
+    <Key>
+      <PropertyRef Name="mahdn" />
+      <PropertyRef Name="masp" />
+    </Key>
+    <Property Name="mahdn" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="masp" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="slnhap" Type="int" />
+    <Property Name="gianhap" Type="float" />
+  </EntityType>
+  <EntityType Name="cthoadonban">
+    <Key>
+      <PropertyRef Name="mahdb" />
+      <PropertyRef Name="masp" />
+    </Key>
+    <Property Name="mahdb" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="masp" Type="int" Nullable="false" />
+    <Property Name="slban" Type="int" />
+    <Property Name="giaban" Type="float" />
+  </EntityType>
+  <EntityType Name="danhmuc">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="int" Nullable="false" />
+    <Property Name="ten" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="hoadonban">
+    <Key>
+      <PropertyRef Name="mahdb" />
+    </Key>
+    <Property Name="mahdb" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="manv" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tennguoidung" Type="varchar" MaxLength="24" Nullable="false" />
+    <Property Name="ngayban" Type="date" />
+    <Property Name="tongtien" Type="float" />
+  </EntityType>
+  <EntityType Name="hoadonnhap">
+    <Key>
+      <PropertyRef Name="mahdn" />
+    </Key>
+    <Property Name="mahdn" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="manv" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="mancc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ngaynhap" Type="datetime" />
+    <Property Name="tongtien" Type="float" />
+  </EntityType>
+  <EntityType Name="nhacungcap">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ten" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="diachi" Type="nvarchar(max)" />
+    <Property Name="sdt" Type="varchar" MaxLength="15" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="nhanvien">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ten" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="diachi" Type="nvarchar(max)" />
+    <Property Name="sdt" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sanpham">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="int" Nullable="false" />
+    <Property Name="ten" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="gia" Type="float" Nullable="false" />
+    <Property Name="anh" Type="image" />
+    <Property Name="soluong" Type="int" />
+    <Property Name="danhmuc" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="taikhoan">
+    <Key>
+      <PropertyRef Name="tennguoidung" />
+    </Key>
+    <Property Name="tennguoidung" Type="varchar" MaxLength="24" Nullable="false" />
+    <Property Name="matkhau" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="sdt" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="diachi" Type="nvarchar(max)" />
+    <Property Name="ngaysinh" Type="date" />
+    <Property Name="ngaydangky" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__cthdb__mahdb__5FB337D6">
+    <End Role="hoadonban" Type="Self.hoadonban" Multiplicity="1" />
+    <End Role="cthoadonban" Type="Self.cthoadonban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hoadonban">
+        <PropertyRef Name="mahdb" />
+      </Principal>
+      <Dependent Role="cthoadonban">
+        <PropertyRef Name="mahdb" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__chitiethd__mahdn__5812160E">
+    <End Role="hoadonnhap" Type="Self.hoadonnhap" Multiplicity="1" />
+    <End Role="cdhoadonnhap" Type="Self.cdhoadonnhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hoadonnhap">
+        <PropertyRef Name="mahdn" />
+      </Principal>
+      <Dependent Role="cdhoadonnhap">
+        <PropertyRef Name="mahdn" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__hoadonban__manv__5BE2A6F2">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="1" />
+    <End Role="hoadonban" Type="Self.hoadonban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonban">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__hoadonnha__mancc__5535A963">
+    <End Role="nhacungcap" Type="Self.nhacungcap" Multiplicity="1" />
+    <End Role="hoadonnhap" Type="Self.hoadonnhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhacungcap">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonnhap">
+        <PropertyRef Name="mancc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__hoadonnhap__manv__5441852A">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="1" />
+    <End Role="hoadonnhap" Type="Self.hoadonnhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonnhap">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cthdb_sanpham">
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+    <End Role="cthoadonban" Type="Self.cthoadonban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sanpham">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="cthoadonban">
+        <PropertyRef Name="masp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonban_tennguoidung">
+    <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="1" />
+    <End Role="hoadonban" Type="Self.hoadonban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="taikhoan">
+        <PropertyRef Name="tennguoidung" />
+      </Principal>
+      <Dependent Role="hoadonban">
+        <PropertyRef Name="tennguoidung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="xoadanhmuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ma" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="da1ModelStoreContainer">
+    <EntitySet Name="cdhoadonnhap" EntityType="Self.cdhoadonnhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cthoadonban" EntityType="Self.cthoadonban" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="danhmuc" EntityType="Self.danhmuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hoadonban" EntityType="Self.hoadonban" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hoadonnhap" EntityType="Self.hoadonnhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhacungcap" EntityType="Self.nhacungcap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="taikhoan" EntityType="Self.taikhoan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__cthdb__mahdb__5FB337D6" Association="Self.FK__cthdb__mahdb__5FB337D6">
+      <End Role="hoadonban" EntitySet="hoadonban" />
+      <End Role="cthoadonban" EntitySet="cthoadonban" />
+    </AssociationSet>
+    <AssociationSet Name="FK__chitiethd__mahdn__5812160E" Association="Self.FK__chitiethd__mahdn__5812160E">
+      <End Role="hoadonnhap" EntitySet="hoadonnhap" />
+      <End Role="cdhoadonnhap" EntitySet="cdhoadonnhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__hoadonban__manv__5BE2A6F2" Association="Self.FK__hoadonban__manv__5BE2A6F2">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="hoadonban" EntitySet="hoadonban" />
+    </AssociationSet>
+    <AssociationSet Name="FK__hoadonnha__mancc__5535A963" Association="Self.FK__hoadonnha__mancc__5535A963">
+      <End Role="nhacungcap" EntitySet="nhacungcap" />
+      <End Role="hoadonnhap" EntitySet="hoadonnhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__hoadonnhap__manv__5441852A" Association="Self.FK__hoadonnhap__manv__5441852A">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="hoadonnhap" EntitySet="hoadonnhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cthdb_sanpham" Association="Self.FK_cthdb_sanpham">
+      <End Role="sanpham" EntitySet="sanpham" />
+      <End Role="cthoadonban" EntitySet="cthoadonban" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonban_tennguoidung" Association="Self.FK_hoadonban_tennguoidung">
+      <End Role="taikhoan" EntitySet="taikhoan" />
+      <End Role="hoadonban" EntitySet="hoadonban" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

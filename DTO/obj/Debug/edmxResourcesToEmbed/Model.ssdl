@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="da1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="danhmuc">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="int" Nullable="false" />
+    <Property Name="ten" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="giohang">
+    <Key>
+      <PropertyRef Name="masp" />
+    </Key>
+    <Property Name="tennguoidung" Type="varchar" MaxLength="24" Nullable="false" />
+    <Property Name="masp" Type="int" Nullable="false" />
+    <Property Name="tensp" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="gia" Type="float" Nullable="false" />
+    <Property Name="soluong" Type="int" Nullable="false" />
+    <Property Name="anh" Type="image" />
+  </EntityType>
+  <EntityType Name="hoadonnhap">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="int" Nullable="false" />
+    <Property Name="masp" Type="int" />
+    <Property Name="manv" Type="int" Nullable="false" />
+    <Property Name="mancc" Type="int" Nullable="false" />
+    <Property Name="soluong" Type="int" />
+    <Property Name="gia" Type="float" />
+    <Property Name="tongtien" Type="float" />
+    <Property Name="ngaynhap" Type="datetime" />
+  </EntityType>
+  <EntityType Name="hoadonxuat">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="int" Nullable="false" />
+    <Property Name="masp" Type="int" />
+    <Property Name="manv" Type="int" Nullable="false" />
+    <Property Name="tennguoidung" Type="varchar" MaxLength="24" Nullable="false" />
+    <Property Name="soluong" Type="int" />
+    <Property Name="gia" Type="float" />
+    <Property Name="tongtien" Type="float" />
+    <Property Name="ngayban" Type="date" />
+  </EntityType>
+  <EntityType Name="nhacungcap">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="int" Nullable="false" />
+    <Property Name="ten" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="diachi" Type="nvarchar(max)" />
+    <Property Name="sdt" Type="varchar" MaxLength="15" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="nhanvien">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="int" Nullable="false" />
+    <Property Name="ten" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="diachi" Type="nvarchar(max)" />
+    <Property Name="sdt" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="tennguoidung" Type="varchar" MaxLength="24" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sanpham">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="int" Nullable="false" />
+    <Property Name="ten" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="gia" Type="float" Nullable="false" />
+    <Property Name="anh" Type="image" />
+    <Property Name="soluong" Type="int" />
+    <Property Name="danhmuc" Type="int" Nullable="false" />
+    <Property Name="nhacungcap" Type="int" />
+  </EntityType>
+  <EntityType Name="taikhoan">
+    <Key>
+      <PropertyRef Name="tennguoidung" />
+    </Key>
+    <Property Name="tennguoidung" Type="varchar" MaxLength="24" Nullable="false" />
+    <Property Name="matkhau" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="sdt" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="diachi" Type="nvarchar(max)" />
+    <Property Name="ngaysinh" Type="date" />
+    <Property Name="ngaydangky" Type="datetime" />
+    <Property Name="quyen" Type="bit" />
+  </EntityType>
+  <Association Name="FK_giohang_masp">
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="giohang" Type="Self.giohang" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="sanpham">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="giohang">
+        <PropertyRef Name="masp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_giohang_tennguoidung">
+    <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="1" />
+    <End Role="giohang" Type="Self.giohang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="taikhoan">
+        <PropertyRef Name="tennguoidung" />
+      </Principal>
+      <Dependent Role="giohang">
+        <PropertyRef Name="tennguoidung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonnhap_mancc">
+    <End Role="nhacungcap" Type="Self.nhacungcap" Multiplicity="1" />
+    <End Role="hoadonnhap" Type="Self.hoadonnhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhacungcap">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonnhap">
+        <PropertyRef Name="mancc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonnhap_manv">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="1" />
+    <End Role="hoadonnhap" Type="Self.hoadonnhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonnhap">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonxuat_manv">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="1" />
+    <End Role="hoadonxuat" Type="Self.hoadonxuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonxuat">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonxuat_masp">
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+    <End Role="hoadonxuat" Type="Self.hoadonxuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sanpham">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonxuat">
+        <PropertyRef Name="masp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonxuat_tennguoidung">
+    <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="1" />
+    <End Role="hoadonxuat" Type="Self.hoadonxuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="taikhoan">
+        <PropertyRef Name="tennguoidung" />
+      </Principal>
+      <Dependent Role="hoadonxuat">
+        <PropertyRef Name="tennguoidung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sanpham_danhmuc">
+    <End Role="danhmuc" Type="Self.danhmuc" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="danhmuc">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="sanpham">
+        <PropertyRef Name="danhmuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sanpham_nhacungcap">
+    <End Role="nhacungcap" Type="Self.nhacungcap" Multiplicity="0..1" />
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhacungcap">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="sanpham">
+        <PropertyRef Name="nhacungcap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="hoadonnguoidung" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tennguoidung" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="xoadanhmuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ma" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="da1ModelStoreContainer">
+    <EntitySet Name="danhmuc" EntityType="Self.danhmuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="giohang" EntityType="Self.giohang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hoadonnhap" EntityType="Self.hoadonnhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="hoadonxuat" EntityType="Self.hoadonxuat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhacungcap" EntityType="Self.nhacungcap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="taikhoan" EntityType="Self.taikhoan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_giohang_masp" Association="Self.FK_giohang_masp">
+      <End Role="sanpham" EntitySet="sanpham" />
+      <End Role="giohang" EntitySet="giohang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_giohang_tennguoidung" Association="Self.FK_giohang_tennguoidung">
+      <End Role="taikhoan" EntitySet="taikhoan" />
+      <End Role="giohang" EntitySet="giohang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonnhap_mancc" Association="Self.FK_hoadonnhap_mancc">
+      <End Role="nhacungcap" EntitySet="nhacungcap" />
+      <End Role="hoadonnhap" EntitySet="hoadonnhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonnhap_manv" Association="Self.FK_hoadonnhap_manv">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="hoadonnhap" EntitySet="hoadonnhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonxuat_manv" Association="Self.FK_hoadonxuat_manv">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="hoadonxuat" EntitySet="hoadonxuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonxuat_masp" Association="Self.FK_hoadonxuat_masp">
+      <End Role="sanpham" EntitySet="sanpham" />
+      <End Role="hoadonxuat" EntitySet="hoadonxuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonxuat_tennguoidung" Association="Self.FK_hoadonxuat_tennguoidung">
+      <End Role="taikhoan" EntitySet="taikhoan" />
+      <End Role="hoadonxuat" EntitySet="hoadonxuat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sanpham_danhmuc" Association="Self.FK_sanpham_danhmuc">
+      <End Role="danhmuc" EntitySet="danhmuc" />
+      <End Role="sanpham" EntitySet="sanpham" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sanpham_nhacungcap" Association="Self.FK_sanpham_nhacungcap">
+      <End Role="nhacungcap" EntitySet="nhacungcap" />
+      <End Role="sanpham" EntitySet="sanpham" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

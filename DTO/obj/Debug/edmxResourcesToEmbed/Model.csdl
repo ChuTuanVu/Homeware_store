@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="da1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="danhmuc">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="Int32" Nullable="false" />
+    <Property Name="ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="sanphams" Relationship="Self.FK_sanpham_danhmuc" FromRole="danhmuc" ToRole="sanpham" />
+  </EntityType>
+  <EntityType Name="giohang">
+    <Key>
+      <PropertyRef Name="masp" />
+    </Key>
+    <Property Name="tennguoidung" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="masp" Type="Int32" Nullable="false" />
+    <Property Name="tensp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gia" Type="Double" Nullable="false" />
+    <Property Name="soluong" Type="Int32" Nullable="false" />
+    <Property Name="anh" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="sanpham" Relationship="Self.FK_giohang_masp" FromRole="giohang" ToRole="sanpham" />
+    <NavigationProperty Name="taikhoan" Relationship="Self.FK_giohang_tennguoidung" FromRole="giohang" ToRole="taikhoan" />
+  </EntityType>
+  <EntityType Name="nhanvien">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="Int32" Nullable="false" />
+    <Property Name="ten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tennguoidung" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="hoadonxuats" Relationship="da1Model.FK_hoadonxuat_manv" FromRole="nhanvien" ToRole="hoadonxuat" />
+    <NavigationProperty Name="hoadonnhaps" Relationship="da1Model.FK_hoadonnhap_manv" FromRole="nhanvien" ToRole="hoadonnhap" />
+  </EntityType>
+  <EntityType Name="sanpham">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="Int32" Nullable="false" />
+    <Property Name="ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="gia" Type="Double" Nullable="false" />
+    <Property Name="anh" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="danhmuc" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="danhmuc1" Relationship="Self.FK_sanpham_danhmuc" FromRole="sanpham" ToRole="danhmuc" />
+    <NavigationProperty Name="giohang" Relationship="Self.FK_giohang_masp" FromRole="sanpham" ToRole="giohang" />
+    <NavigationProperty Name="hoadonxuats" Relationship="da1Model.FK_hoadonxuat_masp" FromRole="sanpham" ToRole="hoadonxuat" />
+    <Property Name="nhacungcap" Type="Int32" />
+    <NavigationProperty Name="nhacungcap1" Relationship="da1Model.FK_sanpham_nhacungcap" FromRole="sanpham" ToRole="nhacungcap" />
+  </EntityType>
+  <EntityType Name="taikhoan">
+    <Key>
+      <PropertyRef Name="tennguoidung" />
+    </Key>
+    <Property Name="tennguoidung" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="matkhau" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ngaysinh" Type="DateTime" Precision="0" />
+    <Property Name="ngaydangky" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="giohangs" Relationship="Self.FK_giohang_tennguoidung" FromRole="taikhoan" ToRole="giohang" />
+    <NavigationProperty Name="hoadonxuats" Relationship="da1Model.FK_hoadonxuat_tennguoidung" FromRole="taikhoan" ToRole="hoadonxuat" />
+    <Property Name="quyen" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_sanpham_danhmuc">
+    <End Role="danhmuc" Type="Self.danhmuc" Multiplicity="1" />
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="danhmuc">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="sanpham">
+        <PropertyRef Name="danhmuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_giohang_masp">
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="1" />
+    <End Role="giohang" Type="Self.giohang" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="sanpham">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="giohang">
+        <PropertyRef Name="masp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_giohang_tennguoidung">
+    <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="1" />
+    <End Role="giohang" Type="Self.giohang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="taikhoan">
+        <PropertyRef Name="tennguoidung" />
+      </Principal>
+      <Dependent Role="giohang">
+        <PropertyRef Name="tennguoidung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="da1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="danhmucs" EntityType="Self.danhmuc" />
+    <EntitySet Name="giohangs" EntityType="Self.giohang" />
+    <EntitySet Name="nhanviens" EntityType="Self.nhanvien" />
+    <EntitySet Name="sanphams" EntityType="Self.sanpham" />
+    <EntitySet Name="taikhoans" EntityType="Self.taikhoan" />
+    <AssociationSet Name="FK_sanpham_danhmuc" Association="Self.FK_sanpham_danhmuc">
+      <End Role="danhmuc" EntitySet="danhmucs" />
+      <End Role="sanpham" EntitySet="sanphams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_giohang_masp" Association="Self.FK_giohang_masp">
+      <End Role="sanpham" EntitySet="sanphams" />
+      <End Role="giohang" EntitySet="giohangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_giohang_tennguoidung" Association="Self.FK_giohang_tennguoidung">
+      <End Role="taikhoan" EntitySet="taikhoans" />
+      <End Role="giohang" EntitySet="giohangs" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(da1Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(da1Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="xoadanhmuc">
+      <Parameter Name="ma" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="hoadonxuats" EntityType="da1Model.hoadonxuat" />
+    <AssociationSet Name="FK_hoadonxuat_manv" Association="da1Model.FK_hoadonxuat_manv">
+      <End Role="nhanvien" EntitySet="nhanviens" />
+      <End Role="hoadonxuat" EntitySet="hoadonxuats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonxuat_masp" Association="da1Model.FK_hoadonxuat_masp">
+      <End Role="sanpham" EntitySet="sanphams" />
+      <End Role="hoadonxuat" EntitySet="hoadonxuats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonxuat_tennguoidung" Association="da1Model.FK_hoadonxuat_tennguoidung">
+      <End Role="taikhoan" EntitySet="taikhoans" />
+      <End Role="hoadonxuat" EntitySet="hoadonxuats" />
+    </AssociationSet>
+    <EntitySet Name="nhacungcaps" EntityType="da1Model.nhacungcap" />
+    <AssociationSet Name="FK_sanpham_nhacungcap" Association="da1Model.FK_sanpham_nhacungcap">
+      <End Role="nhacungcap" EntitySet="nhacungcaps" />
+      <End Role="sanpham" EntitySet="sanphams" />
+    </AssociationSet>
+    <FunctionImport Name="hoadonnguoidung" ReturnType="Collection(da1Model.hoadonnguoidung_Result)">
+      <Parameter Name="tennguoidung" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="hoadonnhaps" EntityType="da1Model.hoadonnhap" />
+    <AssociationSet Name="FK_hoadonnhap_mancc" Association="da1Model.FK_hoadonnhap_mancc">
+      <End Role="nhacungcap" EntitySet="nhacungcaps" />
+      <End Role="hoadonnhap" EntitySet="hoadonnhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hoadonnhap_manv" Association="da1Model.FK_hoadonnhap_manv">
+      <End Role="nhanvien" EntitySet="nhanviens" />
+      <End Role="hoadonnhap" EntitySet="hoadonnhaps" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="hoadonxuat">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="Int32" Nullable="false" />
+    <Property Name="masp" Type="Int32" />
+    <Property Name="manv" Type="Int32" Nullable="false" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="gia" Type="Double" />
+    <Property Name="tongtien" Type="Double" />
+    <Property Name="ngayban" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="nhanvien" Relationship="da1Model.FK_hoadonxuat_manv" FromRole="hoadonxuat" ToRole="nhanvien" />
+    <NavigationProperty Name="sanpham" Relationship="da1Model.FK_hoadonxuat_masp" FromRole="hoadonxuat" ToRole="sanpham" />
+    <Property Name="tennguoidung" Type="String" Nullable="false" MaxLength="24" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="taikhoan" Relationship="da1Model.FK_hoadonxuat_tennguoidung" FromRole="hoadonxuat" ToRole="taikhoan" />
+  </EntityType>
+  <Association Name="FK_hoadonxuat_manv">
+    <End Type="da1Model.nhanvien" Role="nhanvien" Multiplicity="1" />
+    <End Type="da1Model.hoadonxuat" Role="hoadonxuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonxuat">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonxuat_masp">
+    <End Type="da1Model.sanpham" Role="sanpham" Multiplicity="0..1" />
+    <End Type="da1Model.hoadonxuat" Role="hoadonxuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sanpham">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonxuat">
+        <PropertyRef Name="masp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonxuat_tennguoidung">
+    <End Type="da1Model.taikhoan" Role="taikhoan" Multiplicity="1" />
+    <End Type="da1Model.hoadonxuat" Role="hoadonxuat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="taikhoan">
+        <PropertyRef Name="tennguoidung" />
+      </Principal>
+      <Dependent Role="hoadonxuat">
+        <PropertyRef Name="tennguoidung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="nhacungcap">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="Int32" Nullable="false" />
+    <Property Name="ten" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="sanphams" Relationship="da1Model.FK_sanpham_nhacungcap" FromRole="nhacungcap" ToRole="sanpham" />
+    <NavigationProperty Name="hoadonnhaps" Relationship="da1Model.FK_hoadonnhap_mancc" FromRole="nhacungcap" ToRole="hoadonnhap" />
+  </EntityType>
+  <Association Name="FK_sanpham_nhacungcap">
+    <End Type="da1Model.nhacungcap" Role="nhacungcap" Multiplicity="0..1" />
+    <End Type="da1Model.sanpham" Role="sanpham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhacungcap">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="sanpham">
+        <PropertyRef Name="nhacungcap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="hoadonnguoidung_Result">
+    <Property Type="Int32" Name="ma" Nullable="false" />
+    <Property Type="String" Name="tensanpham" Nullable="false" />
+    <Property Type="String" Name="tennhanvien" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="tennguoidung" Nullable="false" MaxLength="24" />
+    <Property Type="String" Name="diachi" Nullable="true" />
+    <Property Type="Int32" Name="soluong" Nullable="true" />
+    <Property Type="Double" Name="gia" Nullable="true" />
+    <Property Type="Double" Name="tongtien" Nullable="true" />
+    <Property Type="DateTime" Name="ngayban" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="hoadonnhap">
+    <Key>
+      <PropertyRef Name="ma" />
+    </Key>
+    <Property Name="ma" Type="Int32" Nullable="false" />
+    <Property Name="masp" Type="Int32" />
+    <Property Name="manv" Type="Int32" Nullable="false" />
+    <Property Name="mancc" Type="Int32" Nullable="false" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="gia" Type="Double" />
+    <Property Name="tongtien" Type="Double" />
+    <Property Name="ngaynhap" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="nhacungcap" Relationship="da1Model.FK_hoadonnhap_mancc" FromRole="hoadonnhap" ToRole="nhacungcap" />
+    <NavigationProperty Name="nhanvien" Relationship="da1Model.FK_hoadonnhap_manv" FromRole="hoadonnhap" ToRole="nhanvien" />
+  </EntityType>
+  <Association Name="FK_hoadonnhap_mancc">
+    <End Type="da1Model.nhacungcap" Role="nhacungcap" Multiplicity="1" />
+    <End Type="da1Model.hoadonnhap" Role="hoadonnhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhacungcap">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonnhap">
+        <PropertyRef Name="mancc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_hoadonnhap_manv">
+    <End Type="da1Model.nhanvien" Role="nhanvien" Multiplicity="1" />
+    <End Type="da1Model.hoadonnhap" Role="hoadonnhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="ma" />
+      </Principal>
+      <Dependent Role="hoadonnhap">
+        <PropertyRef Name="manv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

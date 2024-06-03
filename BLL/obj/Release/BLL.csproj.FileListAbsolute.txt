@@ -1,0 +1,2 @@
+C:\Users\chutu\OneDrive\Máy tính\DA1\BLL\obj\Release\BLL.csprojAssemblyReference.cache
+C:\Users\chutu\OneDrive\Máy tính\DA1\BLL\obj\Release\BLL.csproj.CoreCompileInputs.cache

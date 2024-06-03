@@ -1,0 +1,15 @@
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\bin\Release\DAL.dll.config
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\bin\Release\DAL.dll
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\bin\Release\DAL.pdb
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\bin\Release\DTO.dll
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\bin\Release\EntityFramework.dll
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\bin\Release\DTO.pdb
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\bin\Release\DTO.dll.config
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\bin\Release\EntityFramework.xml
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\obj\Release\DAL.csprojAssemblyReference.cache
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\obj\Release\DAL.csproj.CopyComplete
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\obj\Release\DAL.dll
+C:\Users\chutu\OneDrive\Máy tính\DA1\DAL\obj\Release\DAL.pdb

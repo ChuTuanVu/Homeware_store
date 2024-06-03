@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="002e0dad1f6a493db2302569d8eebdf5" Name="Diagram1" ZoomLevel="101">
+        <EntityTypeShape EntityType="da1Model.danhmuc" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="da1Model.giohang" Width="1.5" PointX="4" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="da1Model.nhanvien" Width="1.5" PointX="3.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="da1Model.sanpham" Width="1.5" PointX="6.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="da1Model.taikhoan" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="da1Model.FK_sanpham_danhmuc" ManuallyRouted="false" />
+        <AssociationConnector Association="da1Model.FK_giohang_masp" ManuallyRouted="false" />
+        <AssociationConnector Association="da1Model.FK_giohang_tennguoidung" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="da1Model.hoadonxuat" Width="1.5" PointX="10.5" PointY="7.5" />
+        <AssociationConnector Association="da1Model.FK_hoadonxuat_manv" />
+        <AssociationConnector Association="da1Model.FK_hoadonxuat_masp" />
+        <AssociationConnector Association="da1Model.FK_hoadonxuat_tennguoidung" />
+        <EntityTypeShape EntityType="da1Model.nhacungcap" Width="1.5" PointX="1" PointY="6.125" />
+        <AssociationConnector Association="da1Model.FK_sanpham_nhacungcap" />
+        <EntityTypeShape EntityType="da1Model.hoadonnhap" Width="1.5" PointX="5.5" PointY="6.375" />
+        <AssociationConnector Association="da1Model.FK_hoadonnhap_mancc" />
+        <AssociationConnector Association="da1Model.FK_hoadonnhap_manv" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

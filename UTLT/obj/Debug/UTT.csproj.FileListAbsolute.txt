@@ -1,0 +1,8 @@
+C:\Users\chutu\OneDrive\Máy tính\DA1\UTT\bin\Debug\UTT.dll
+C:\Users\chutu\OneDrive\Máy tính\DA1\UTT\bin\Debug\UTT.pdb
+C:\Users\chutu\OneDrive\Máy tính\DA1\UTT\obj\Debug\UTT.Properties.Resources.resources
+C:\Users\chutu\OneDrive\Máy tính\DA1\UTT\obj\Debug\UTT.csproj.GenerateResource.cache
+C:\Users\chutu\OneDrive\Máy tính\DA1\UTT\obj\Debug\UTT.csproj.CoreCompileInputs.cache
+C:\Users\chutu\OneDrive\Máy tính\DA1\UTT\obj\Debug\UTT.dll
+C:\Users\chutu\OneDrive\Máy tính\DA1\UTT\obj\Debug\UTT.pdb
+C:\Users\chutu\OneDrive\Máy tính\DA1\UTT\obj\Debug\UTT.csprojAssemblyReference.cache
